@@ -1,0 +1,26 @@
+1.	Write class MyArraysInt with three methods. 
+public static int [] addNumber(int[] array, int num) {
+//adds num at the array's end
+//returns new array with added number
+//using standard method Arrays.copyOf
+return null;
+}
+public static int[] removeNumber(int [] array, int index) {
+//removes element at a given index for right index value [0 - array.length-1]
+// and returns new array with no the removed one
+//returns the source array for a wrong index value
+//(less than 0 or greater than array.length - 1
+//using the standard method System.arraycopy
+return null;
+}
+public static int[] insertNumber(int [] array, int index, int num) {
+//inserts a given num at a given index for right value of the index [0 - array.length]
+// and returns new array with the inserted number
+//return the source array for a wrong index value
+// (less than 0 or greater than array.length)
+//using the standard method System.arraycopy
+return null;
+}
+2.	Write tests for the class MyArraysInt in the class MyArraysIntTests
+3.	In the same class MyArrayIntTests write test for testing standard static method of the Java class Arrays
+Arrays.binarySearch(int [] a, int key)
