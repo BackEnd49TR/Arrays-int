@@ -24,13 +24,13 @@ class MyArraysIntTest {
 		int arrayExp1[] = { 1, 2, 4, 5 };
 		int arrayExp2[] = { 1, 2, 3, 4 };
 		int arrayEmpty[] = {};
-
 		assertArrayEquals(arrayExp, removeNumber(array, 0));
 		assertArrayEquals(arrayExp1, removeNumber(array, 2));
 		assertArrayEquals(arrayExp2, removeNumber(array, 4));
 		assertArrayEquals(array, removeNumber(array, -1));
 		assertArrayEquals(array, removeNumber(array, 5));
 		assertArrayEquals(arrayEmpty, removeNumber(arrayEmpty, 0));
+				
 	}
 
 	@Test
@@ -40,9 +40,8 @@ class MyArraysIntTest {
 		int arrayExp[] = { -1, 1, 2, 3 };
 		int arrayExp1[] = { 1, 2, -1, 3 };
 		int arrayExp2[] = { 1, 2, 3, -1 };
-		int arrayExp3[] = {-1};
+		int arrayExp3[] = { -1 };
 		int arrayEmpty[] = {};
-		
 
 		assertArrayEquals(arrayExp, insertNumber(array, 0, -1));
 		assertArrayEquals(arrayExp1, insertNumber(array, 2, -1));
@@ -94,13 +93,13 @@ class MyArraysIntTest {
 		assertEquals(-3, Arrays.binarySearch(array, 3));
 		assertEquals(-8, Arrays.binarySearch(array, 12));
 		assertEquals(-9, Arrays.binarySearch(array, 20));
-		//assertTrue(Arrays.binarySearch(array, 0, 4, 0) < 0);
+		// assertTrue(Arrays.binarySearch(array, 0, 4, 0) < 0);
 	}
-	
+
 	@Test
 	@Disabled
 	void testBinarySearchOutOfBound() {
-		int array[] = {1,2,3};
+		int array[] = { 1, 2, 3 };
 		assertEquals(0, Arrays.binarySearch(array, 2, 0, 1));
 		assertEquals(0, Arrays.binarySearch(array, -2, 2, 1));
 		assertEquals(0, Arrays.binarySearch(array, 0, 6, 1));

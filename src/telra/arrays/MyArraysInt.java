@@ -25,7 +25,8 @@ public class MyArraysInt {
 
 	public static int[] insertNumber(int[] array, int index, int num) {
 
-		if (index >= 0 && index <= array.length ) {
+		if (index >= 0 && index <= array.length) {
+
 			int arrayDest[] = new int[array.length + 1];
 			System.arraycopy(array, 0, arrayDest, 0, index);
 			arrayDest[index] = num;
