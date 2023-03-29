@@ -4,67 +4,54 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import static telra.arrays.MyArraysInt.*;
 
 class MyArraysIntTest {
 
 	@Test
 	void testAddNumber() {
 		int array[] = { 1, 2, 3, 4, 5 };
-		int arrayExp[] = { 1, 2, 3, 4, 5, 0 };
-		assertArrayEquals(arrayExp, Arrays.copyOf(array, arrayExp.length));
-		int num = 6;
-		arrayExp[5] = num;
-		int arrayDest[] = { 1, 2, 3, 4, 5, 6 };
-		assertArrayEquals(arrayExp, arrayDest);
-
+		int arrayExp[] = { 1, 2, 3, 4, 5, 8 };
+		assertArrayEquals(arrayExp, addNumber(array, 8));
 	}
 
 	@Test
 	void testRemoveNumber() {
 		int array[] = { 1, 2, 3, 4, 5 };
+		int arrayExp[] = { 2, 3, 4, 5 };
+		int arrayExp1[] = { 1, 2, 4, 5 };
+		int arrayExp2[] = { 1, 2, 3, 4 };
+		int arrayEmpty[] = {};
 
-		int arrayExp[] = { 1, 2, 4, 5 };
-		int arrayDest[] = new int[4];
-
-		System.arraycopy(array, 0, arrayDest, 0, 2);
-		System.arraycopy(array, 3, arrayDest, 2, 2);
-
-		assertArrayEquals(arrayDest, arrayExp);
-
-		int arrayDest1[] = new int[5];
-
-		System.arraycopy(array, 0, arrayDest1, 0, 5);
-
-//		assertEquals(0, Arrays.binarySearch(index, 0));
-//		assertEquals(1, Arrays.binarySearch(index, array.length - 1));
-//		assertEquals(-1, Arrays.binarySearch(index, -1));
-//		assertEquals(-3, Arrays.binarySearch(index, array.length));
+		assertArrayEquals(arrayExp, removeNumber(array, 0));
+		assertArrayEquals(arrayExp1, removeNumber(array, 2));
+		assertArrayEquals(arrayExp2, removeNumber(array, 4));
+		assertArrayEquals(array, removeNumber(array, -1));
+		assertArrayEquals(array, removeNumber(array, 5));
+		assertArrayEquals(arrayEmpty, removeNumber(arrayEmpty, 0));
 	}
 
 	@Test
 	void testInsertNumber() {
 
-		int array[] = { 1, 2, 4, 5 };
-		int num = 3;
-		int arrayExp[] = { 1, 2, 3, 4, 5 };
-		int arrayDest[] = new int[5];
+		int array[] = { 1, 2, 3 };
+		int arrayExp[] = { -1, 1, 2, 3 };
+		int arrayExp1[] = { 1, 2, -1, 3 };
+		int arrayExp2[] = { 1, 2, 3, -1 };
+		int arrayExp3[] = {-1};
+		int arrayEmpty[] = {};
+		
 
-		System.arraycopy(array, 0, arrayDest, 0, 2);
-		System.arraycopy(array, 2, arrayDest, 3, 2);
-		arrayDest[2] = num;
+		assertArrayEquals(arrayExp, insertNumber(array, 0, -1));
+		assertArrayEquals(arrayExp1, insertNumber(array, 2, -1));
+		assertArrayEquals(arrayExp2, insertNumber(array, 3, -1));
+		assertArrayEquals(array, insertNumber(array, -1, 0));
+		assertArrayEquals(array, insertNumber(array, 4, 0));
+		assertArrayEquals(arrayExp3, insertNumber(arrayEmpty, 0, -1));
+		assertArrayEquals(arrayEmpty, insertNumber(arrayEmpty, 5, -1));
 
-		assertArrayEquals(arrayDest, arrayExp);
-
-		int arrayDest1[] = new int[4];
-
-		System.arraycopy(array, 0, arrayDest1, 0, 4);
-//
-//		assertEquals(0, Arrays.binarySearch(index, 0));
-//		assertEquals(1, Arrays.binarySearch(index, array.length - 1));
-//		assertEquals(-1, Arrays.binarySearch(index, -1));
-//		assertEquals(-3, Arrays.binarySearch(index, array.length));
-//		
 	}
 
 	@Test
@@ -107,6 +94,16 @@ class MyArraysIntTest {
 		assertEquals(-3, Arrays.binarySearch(array, 3));
 		assertEquals(-8, Arrays.binarySearch(array, 12));
 		assertEquals(-9, Arrays.binarySearch(array, 20));
+		//assertTrue(Arrays.binarySearch(array, 0, 4, 0) < 0);
+	}
+	
+	@Test
+	@Disabled
+	void testBinarySearchOutOfBound() {
+		int array[] = {1,2,3};
+		assertEquals(0, Arrays.binarySearch(array, 2, 0, 1));
+		assertEquals(0, Arrays.binarySearch(array, -2, 2, 1));
+		assertEquals(0, Arrays.binarySearch(array, 0, 6, 1));
 	}
 
 }
