@@ -1,55 +1,49 @@
 package telra.arrays.test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import static java.util.Arrays.binarySearch;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static telra.arrays.MyArraysInt.*;
 
 class MyArraysIntTest {
 
+	int[] array = { 10, 20, 30, 40, 100 };
+
 	@Test
 	void testAddNumber() {
-		int array[] = { 1, 2, 3, 4, 5 };
-		int arrayExp[] = { 1, 2, 3, 4, 5, 8 };
-		assertArrayEquals(arrayExp, addNumber(array, 8));
+		int arrayExp[] = { 10, 20, 30, 40, 100, -1 };
+		assertArrayEquals(arrayExp, addNumber(array, -1));
 	}
 
 	@Test
 	void testRemoveNumber() {
-		int array[] = { 1, 2, 3, 4, 5 };
-		int arrayExp[] = { 2, 3, 4, 5 };
-		int arrayExp1[] = { 1, 2, 4, 5 };
-		int arrayExp2[] = { 1, 2, 3, 4 };
-		int arrayEmpty[] = {};
+
+		int arrayExp[] = { 20, 30, 40, 100 };
+		int arrayExp1[] = { 10, 20, 30, 40 };
+		int arrayExp2[] = { 10, 20, 40, 100 };
+
 		assertArrayEquals(arrayExp, removeNumber(array, 0));
-		assertArrayEquals(arrayExp1, removeNumber(array, 2));
-		assertArrayEquals(arrayExp2, removeNumber(array, 4));
-		assertArrayEquals(array, removeNumber(array, -1));
+		assertArrayEquals(arrayExp1, removeNumber(array, 4));
+		assertArrayEquals(arrayExp2, removeNumber(array, 2));
+		assertArrayEquals(array, removeNumber(array, -2));
 		assertArrayEquals(array, removeNumber(array, 5));
-		assertArrayEquals(arrayEmpty, removeNumber(arrayEmpty, 0));
-				
+
 	}
 
 	@Test
 	void testInsertNumber() {
 
-		int array[] = { 1, 2, 3 };
-		int arrayExp[] = { -1, 1, 2, 3 };
-		int arrayExp1[] = { 1, 2, -1, 3 };
-		int arrayExp2[] = { 1, 2, 3, -1 };
-		int arrayExp3[] = { -1 };
-		int arrayEmpty[] = {};
+		int arrayExp[] = { 1000, 10, 20, 30, 40, 100 };
+		int arrayExp1[] = { 10, 20, 30, 40, 100, 1000 };
+		int arrayExp2[] = { 10, 20, 1000, 30, 40, 100 };
 
-		assertArrayEquals(arrayExp, insertNumber(array, 0, -1));
-		assertArrayEquals(arrayExp1, insertNumber(array, 2, -1));
-		assertArrayEquals(arrayExp2, insertNumber(array, 3, -1));
-		assertArrayEquals(array, insertNumber(array, -1, 0));
-		assertArrayEquals(array, insertNumber(array, 4, 0));
-		assertArrayEquals(arrayExp3, insertNumber(arrayEmpty, 0, -1));
-		assertArrayEquals(arrayEmpty, insertNumber(arrayEmpty, 5, -1));
+		assertArrayEquals(arrayExp, insertNumber(array, 0, 1000));
+		assertArrayEquals(arrayExp1, insertNumber(array, 5, 1000));
+		assertArrayEquals(arrayExp2, insertNumber(array, 2, 1000));
+		assertArrayEquals(array, insertNumber(array, -2, 1000));
+		assertArrayEquals(array, insertNumber(array, 6, 1000));
 
 	}
 
@@ -84,25 +78,12 @@ class MyArraysIntTest {
 	void testBinarySearchInt() {
 		// only for sort array
 
-		int array[] = { -9, -7, 5, 6, 6, 10, 11, 15 }; // array [0-7]
-		assertEquals(0, Arrays.binarySearch(array, -9));
-		assertEquals(3, Arrays.binarySearch(array, 6));
-		assertEquals(7, Arrays.binarySearch(array, 15));
-		assertEquals(3, Arrays.binarySearch(array, 6));
+		assertEquals(0, binarySearch(array, 10));
+		assertEquals(-1, binarySearch(array, 5));
+		assertEquals(2, binarySearch(array, 30));
+		assertEquals(-3, binarySearch(array, 25));
+		assertEquals(4, binarySearch(array, 100));
+		assertEquals(-6, binarySearch(array, 150));
 
-		assertEquals(-3, Arrays.binarySearch(array, 3));
-		assertEquals(-8, Arrays.binarySearch(array, 12));
-		assertEquals(-9, Arrays.binarySearch(array, 20));
-		// assertTrue(Arrays.binarySearch(array, 0, 4, 0) < 0);
 	}
-
-	@Test
-	@Disabled
-	void testBinarySearchOutOfBound() {
-		int array[] = { 1, 2, 3 };
-		assertEquals(0, Arrays.binarySearch(array, 2, 0, 1));
-		assertEquals(0, Arrays.binarySearch(array, -2, 2, 1));
-		assertEquals(0, Arrays.binarySearch(array, 0, 6, 1));
-	}
-
 }

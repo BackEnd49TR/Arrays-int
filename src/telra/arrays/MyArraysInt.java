@@ -12,27 +12,35 @@ public class MyArraysInt {
 	}
 
 	public static int[] removeNumber(int[] array, int index) {
-
-		if (index >= 0 && index <= array.length - 1) {
-			int arrayDest[] = new int[array.length - 1];
+		int[] arrayDest = array;
+		if (index > -1 && index < array.length) {
+			arrayDest = new int[array.length - 1];
 			System.arraycopy(array, 0, arrayDest, 0, index);
-			System.arraycopy(array, index + 1, arrayDest, index, (array.length - 1) - index);
-			return arrayDest;
+			System.arraycopy(array, index + 1, arrayDest, index, arrayDest.length - index);
 		}
-		return array;
+		return arrayDest;
 
 	}
 
 	public static int[] insertNumber(int[] array, int index, int num) {
 
-		if (index >= 0 && index <= array.length) {
-
-			int arrayDest[] = new int[array.length + 1];
+		int[] arrayDest = array;
+		if (index > -1 && index <= array.length) {
+			arrayDest = new int[array.length + 1];
 			System.arraycopy(array, 0, arrayDest, 0, index);
-			arrayDest[index] = num;
 			System.arraycopy(array, index, arrayDest, index + 1, array.length - index);
-			return arrayDest;
+			arrayDest[index] = num;
 		}
-		return array;
+		return arrayDest;
 	}
+
+	public static int[] insertNumberSorted(int[] array, int num) {
+		int index = Arrays.binarySearch(array, num);
+		if (index < 0) {
+			index = -index - 1;
+		}
+
+		return insertNumber(array, index, num);
+	}
+
 }
